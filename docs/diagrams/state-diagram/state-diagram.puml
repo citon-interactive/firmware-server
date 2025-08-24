@@ -20,6 +20,7 @@ API_AUTHENTICATING : Save session token in memory for use in SERVING state
 
 SERVING : Periodically poll API for new firmware
 SERVING : Publish new firmware to MQTT broker
+SERVING : Check if firmware has been applied successfully
 
 
 @enduml
