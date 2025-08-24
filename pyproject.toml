@@ -1,4 +1,17 @@
 [project]
+dependencies = [
+    "python-statemachine==2.5.0",
+    "msgspec==0.19.0",
+    "uvicorn==0.35.0",
+    "fastapi==0.116.1",
+    "paho-mqtt==2.1.0",
+]
 name = "firmware_server"
 version = "0.1"
-dependencies = ["python-statemachine==2.5.0"]
+
+[project.optional-dependencies]
+test = ["pytest==8.4.1"]
+
+[project.scripts]
+mock_api_server = "tests.mock.api_test_server:main"
+mock_mqtt_client = "tests.mock.mqtt_test_client:main"
