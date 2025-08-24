@@ -1,0 +1,4 @@
+[project]
+name = "firmware_server"
+version = "0.1"
+dependencies = ["python-statemachine==2.5.0"]
