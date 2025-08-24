@@ -1,0 +1,25 @@
+@startuml state-diagram
+[*] --> AUTHENTICATING
+AUTHENTICATING ---> CONFIGURING : FAILED
+AUTHENTICATING ---> API_AUTHENTICATING : SUCCESS
+
+AUTHENTICATING : Connect to network with saved credentials
+
+CONFIGURING ---> AUTHENTICATING : SUCCESS
+CONFIGURING ---> CONFIGURING : FAILED (write error)
+
+CONFIGURING : Start Access Point and Web Server for configuration
+CONFIGURING : Wait for user to configure network and workshop credentials
+CONFIGURING : Save new credentials to persistent storage
+
+API_AUTHENTICATING ---> CONFIGURING : FAILED
+API_AUTHENTICATING ---> SERVING : SUCCESS
+
+API_AUTHENTICATING : Get session token from API with saved workshop credentials
+API_AUTHENTICATING : Save session token in memory for use in SERVING state
+
+SERVING : Periodically poll API for new firmware
+SERVING : Publish new firmware to MQTT broker
+
+
+@enduml
